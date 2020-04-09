@@ -1,0 +1,3 @@
+docker build -t second:v1.0 .
+
+@pause
