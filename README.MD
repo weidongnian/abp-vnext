@@ -17,3 +17,9 @@ abp vnext 项目整理
 8，依赖MongoDB 4.0+(可选，不用时请注释相关代码)
 
 9，依赖Kibana 6.6+ (可选,建议显示日志)
+
+10，进入applications/AuthServer.Host，修改数据库配置，完成数据迁移
+
+	Add-Migration init
+	Update-Database 
+

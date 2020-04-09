@@ -2,6 +2,7 @@
 @using Volo.Abp.Users
 @model AuthServer.Host.Pages.IndexModel
 @inject ICurrentUser CurrentUser
+
 @if (CurrentUser.IsAuthenticated)
 {
     <div>
