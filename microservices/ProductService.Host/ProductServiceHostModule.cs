@@ -8,7 +8,7 @@ using ProductManagement;
 using ProductManagement.EntityFrameworkCore;
 using StackExchange.Redis;
 using Microsoft.OpenApi.Models;
-using MsDemo.Shared;
+using Microservice.Shared;
 using Swashbuckle.AspNetCore.Swagger;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.MultiTenancy;

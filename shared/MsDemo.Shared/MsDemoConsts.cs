@@ -1,4 +1,4 @@
-﻿namespace MsDemo.Shared
+﻿namespace Microservice.Shared
 {
     public class MsDemoConsts
     {

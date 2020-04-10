@@ -4,7 +4,7 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /src
-COPY AuthServer.Host.csproj .
+COPY . .
 RUN dotnet restore
 COPY . .
 RUN dotnet publish -c release -o /app

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using MsDemo.Shared;
+using Microservice.Shared;
 using StackExchange.Redis;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.MultiTenancy;

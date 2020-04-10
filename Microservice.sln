@@ -55,7 +55,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicWebSite.Host", "appli
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TenantManagementService.Host", "microservices\TenantManagementService.Host\TenantManagementService.Host.csproj", "{3E1DDEDA-A897-470F-81C2-5A3AFA6D0B61}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05层公共共享", "05层公共共享", "{2B3B460C-0293-44A1-BEF4-91A778CE73CE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05层公共共享层", "05层公共共享层", "{2B3B460C-0293-44A1-BEF4-91A778CE73CE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MsDemo.Shared", "shared\MsDemo.Shared\MsDemo.Shared.csproj", "{D4549E30-18CC-4157-B994-C0097216C2C8}"
 EndProject

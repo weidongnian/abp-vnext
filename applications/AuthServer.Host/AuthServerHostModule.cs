@@ -1,8 +1,10 @@
 using AuthServer.Host.EntityFrameworkCore;
+using Localization.Resources.AbpUi;
+using Microservice.Shared;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Extensions.DependencyInjection;
-using MsDemo.Shared;
+using Microsoft.Extensions.Hosting;
 using StackExchange.Redis;
 using Volo.Abp;
 using Volo.Abp.Account;
@@ -26,6 +28,8 @@ using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
 using Volo.Abp.Threading;
+using Volo.Abp.Validation.Localization;
+using Volo.Abp.VirtualFileSystem;
 
 namespace AuthServer.Host
 {
@@ -43,17 +47,30 @@ namespace AuthServer.Host
         typeof(AbpAccountWebIdentityServerModule),
         typeof(AbpAspNetCoreMvcUiBasicThemeModule),
         typeof(AbpTenantManagementEntityFrameworkCoreModule),
-        typeof(AbpTenantManagementApplicationContractsModule)
+        typeof(AbpTenantManagementApplicationContractsModule),
+        typeof(AbpLocalizationModule)
     )]
     public class AuthServerHostModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             var configuration = context.Services.GetConfiguration();
+            var hostingEnvironment = context.Services.GetHostingEnvironment();
+
 
             context.Services.AddAbpDbContext<AuthServerDbContext>(options =>
             {
                 options.AddDefaultRepositories();
+            });
+
+            Configure<AbpVirtualFileSystemOptions>(options =>
+            {
+                options.FileSets.AddEmbedded<AuthServerHostModule>("AuthServer.Host");
+
+                if (hostingEnvironment.IsDevelopment())
+                {
+                    options.FileSets.ReplaceEmbeddedByPhysical<AuthServerHostModule>(hostingEnvironment.ContentRootPath);
+                }
             });
 
             Configure<AbpMultiTenancyOptions>(options =>
@@ -68,7 +85,16 @@ namespace AuthServer.Host
 
             Configure<AbpLocalizationOptions>(options =>
             {
+                options.Resources
+                .Add<SolutionResource>("zh-Hans")
+                .AddBaseTypes(
+                        typeof(AbpValidationResource),
+                        typeof(AbpUiResource)
+                    )
+                .AddVirtualJson("/Localization/Resources/AuthServer");
+
                 options.Languages.Add(new LanguageInfo("en", "en", "English"));
+                options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "¼òÌåÖÐÎÄ"));
             });
 
             context.Services.AddStackExchangeRedisCache(options =>

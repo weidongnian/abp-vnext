@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
-using MsDemo.Shared;
+using Microservice.Shared;
 using ProductManagement;
 using StackExchange.Redis;
 using Volo.Abp;
