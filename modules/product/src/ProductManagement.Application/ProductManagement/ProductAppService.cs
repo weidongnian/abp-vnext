@@ -15,6 +15,7 @@ namespace ProductManagement
     public class ProductAppService : ApplicationService, IProductAppService
     {
         private readonly ProductManager _productManager;
+
         private readonly IRepository<Product, Guid> _productRepository;
 
         public ProductAppService(ProductManager productManager, IRepository<Product, Guid> productRepository)

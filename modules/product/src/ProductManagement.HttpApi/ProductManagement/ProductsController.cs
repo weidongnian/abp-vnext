@@ -14,6 +14,8 @@ namespace ProductManagement
     {
         private readonly IProductAppService _productAppService;
 
+        bool isDebug { get; set; }
+
         public ProductsController(IProductAppService productAppService)
         {
             _productAppService = productAppService;
@@ -56,6 +58,12 @@ namespace ProductManagement
         [HttpDelete]
         public Task DeleteAsync(Guid id)
         {
+            if (isDebug)
+            {
+                //throw new UserFriendlyException(message:"",code:"");
+                //throw new BusinessException("");
+            }
+
             return _productAppService.DeleteAsync(id);
         }
     }

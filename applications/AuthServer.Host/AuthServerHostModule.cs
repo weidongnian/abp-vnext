@@ -94,7 +94,7 @@ namespace AuthServer.Host
                 .AddVirtualJson("/Localization/Resources/AuthServer");
 
                 options.Languages.Add(new LanguageInfo("en", "en", "English"));
-                options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "��������"));
+                options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
             });
 
             context.Services.AddStackExchangeRedisCache(options =>
@@ -102,8 +102,10 @@ namespace AuthServer.Host
                 options.Configuration = configuration["Redis:Configuration"];
             });
 
+            //设置审核日志
             Configure<AbpAuditingOptions>(options =>
             {
+                //HTTP GET请求通常不应该在数据库进行任何更改,审计日志系统不会为GET请求保存审计日志对象. 将此值设置为 true 可为GET请求启用审计日志系统
                 options.IsEnabledForGetRequests = true;
                 options.ApplicationName = "AuthServer";
             });

@@ -25,6 +25,10 @@ using Volo.Abp.PermissionManagement;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.Web;
 using Volo.Abp.UI.Navigation;
+using Volo.Abp.VirtualFileSystem;
+using Microsoft.Extensions.Hosting;
+using Volo.Abp.Validation.Localization;
+using Localization.Resources.AbpUi;
 
 namespace BackendAdminApp.Host
 {
@@ -42,7 +46,8 @@ namespace BackendAdminApp.Host
         typeof(ProductManagementHttpApiClientModule),
         typeof(ProductManagementWebModule),
         typeof(AbpAspNetCoreMvcUiBasicThemeModule),
-        typeof(AbpFeatureManagementHttpApiClientModule)
+        typeof(AbpFeatureManagementHttpApiClientModule),
+        typeof(AbpLocalizationModule)
         )]
         public class BackendAdminAppHostModule : AbpModule
     {
@@ -50,8 +55,32 @@ namespace BackendAdminApp.Host
         {
             var configuration = context.Services.GetConfiguration();
 
+            var hostingEnvironment = context.Services.GetHostingEnvironment();
+
+            Console.WriteLine($"==>\nhostingEnvironment.IsDevelopment=>:{hostingEnvironment.IsDevelopment()}\n");
+
+            Configure<AbpVirtualFileSystemOptions>(options =>
+            {
+                options.FileSets.AddEmbedded<BackendAdminAppHostModule>("BackendAdminApp.Host");
+
+                if (hostingEnvironment.IsDevelopment())
+                {
+                    options.FileSets.ReplaceEmbeddedByPhysical<BackendAdminAppHostModule>(hostingEnvironment.ContentRootPath);
+                }
+            });
+
             Configure<AbpLocalizationOptions>(options =>
             {
+                options.Resources
+                .Add<BackendAdminAppResource>("en")
+                .AddBaseTypes(
+                        typeof(AbpValidationResource),
+                        typeof(AbpUiResource)
+                    )
+                .AddVirtualJson("/Localization/Resources/BackendAdminApp");
+
+                options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
+
                 options.Languages.Add(new LanguageInfo("en", "en", "English"));
             });
 
@@ -117,7 +146,9 @@ namespace BackendAdminApp.Host
             app.UseCorrelationId();
             app.UseVirtualFiles();
             app.UseRouting();
+
             app.UseAuthentication();
+
             if (MsDemoConsts.IsMultiTenancyEnabled)
             {
                 app.UseMultiTenancy();

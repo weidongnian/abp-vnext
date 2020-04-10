@@ -7,7 +7,7 @@ namespace Microservice.Shared
     /// <summary>
     /// 解决方案基础本地化文件
     /// </summary>
-    //[LocalizationResourceName("Local")]
+    //[LocalizationResourceName("SolutionResource_1")]
     public class SolutionResource_1
     {
 

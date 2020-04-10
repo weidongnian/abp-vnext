@@ -12,6 +12,7 @@ namespace ProductManagement
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
+            //AutoMapper 来控制每个配置文件类的配置验证
             Configure<AbpAutoMapperOptions>(options =>
             {
                 options.AddProfile<ProductManagementApplicationAutoMapperProfile>(validate: true);

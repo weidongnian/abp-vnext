@@ -33,11 +33,13 @@ namespace ProductManagement
                 options.MenuContributors.Add(new ProductManagementMenuContributor());
             });
 
+            //路径虚拟化
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
                 options.FileSets.AddEmbedded<ProductManagementWebModule>("ProductManagement");
             });
 
+            //本地化
             Configure<AbpLocalizationOptions>(options =>
             {
                 options.Resources

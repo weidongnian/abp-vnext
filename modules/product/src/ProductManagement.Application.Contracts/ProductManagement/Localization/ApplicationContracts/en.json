@@ -5,6 +5,7 @@
     "Permission:Products": "Products",
     "Permission:Edit": "Edit",
     "Permission:Delete": "Delete",
-    "Permission:Create": "Create"
+    "Permission:Create": "Create",
+    "Permission:Audi": "Audi"
   }
 }

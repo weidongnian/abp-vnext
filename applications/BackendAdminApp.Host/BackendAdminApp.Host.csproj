@@ -9,6 +9,7 @@
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>
     <PreserveCompilationReferences>true</PreserveCompilationReferences>
+    <UserSecretsId>41a1d331-2a7b-4926-9606-d3dd308ccf86</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

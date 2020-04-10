@@ -13,7 +13,12 @@ namespace ProductManagement
             public const string Update = Default + ".Update";
             public const string Create = Default + ".Create";
 
+            /// <summary>
+            /// 审核权限
+            /// </summary>
+            public const string Audi= Default + ".Audi";
         }
+
         public static string[] GetAll()
         {
             return ReflectionHelper.GetPublicConstantsRecursively(typeof(ProductManagementPermissions));

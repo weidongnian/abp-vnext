@@ -18,7 +18,7 @@
     "BackendAdminApp.Host": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:51954",
+      "applicationUrl": "http://localhost:51954;http://[*]:51954",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
